@@ -21,9 +21,9 @@ class PythonService {
       // The process is started in the background, wait until it's finished
       $process->wait(function ($type, $buffer) {
         if (Process::ERR === $type) {
-          dd('ERR > ' . $buffer);
+          echo "STDERR: " . $buffer;
         } else {
-          dd('OUT > ' . $buffer);
+          echo "STDOUT: " . $buffer;
         }
       });
 
