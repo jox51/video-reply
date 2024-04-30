@@ -3,8 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build && vite build --ssr",
-        "poetry": "cd python && /home/forge/default/.local/bin/poetry install --no-root && poetry shell"
+        "build": "vite build && vite build --ssr"
     },
     "devDependencies": {
         "@headlessui/react": "^1.7.19",
