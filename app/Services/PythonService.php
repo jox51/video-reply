@@ -21,9 +21,9 @@ class PythonService {
       // The process is started in the background, wait until it's finished
       $process->wait(function ($type, $buffer) {
         if (Process::ERR === $type) {
-          echo 'ERR > ' . $buffer;
+          dd('ERR > ' . $buffer);
         } else {
-          echo 'OUT > ' . $buffer;
+          dd('OUT > ' . $buffer);
         }
       });
 
@@ -31,9 +31,9 @@ class PythonService {
         throw new ProcessFailedException($process);
       }
 
-      echo 'Output: ' . $process->getOutput();
+      dd('Output: ' . $process->getOutput());
     } catch (ProcessFailedException $exception) {
-      echo 'Error executing process: ', $exception->getMessage();
+      dd('Error executing process: ', $exception->getMessage());
     }
   }
 }
