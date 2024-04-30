@@ -13,14 +13,25 @@ class PythonService {
     $scriptPath = base_path('/python/main.py');
     $process = new Process(["python3", $scriptPath]);
     $process->setWorkingDirectory(base_path());
-    $process->setTimeout(0);
+    $process->setTimeout(2600);
 
     try {
-      // $process->mustRun(); // Executes the process and throws an exception if it fails
       $process->start();
 
-      dd($process->getOutput()); // Outputs the response from the script
-      $process->wait();
+      // The process is started in the background, wait until it's finished
+      $process->wait(function ($type, $buffer) {
+        if (Process::ERR === $type) {
+          echo 'ERR > ' . $buffer;
+        } else {
+          echo 'OUT > ' . $buffer;
+        }
+      });
+
+      if (!$process->isSuccessful()) {
+        throw new ProcessFailedException($process);
+      }
+
+      echo 'Output: ' . $process->getOutput();
     } catch (ProcessFailedException $exception) {
       echo 'Error executing process: ', $exception->getMessage();
     }
