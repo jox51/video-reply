@@ -16,7 +16,9 @@ class PythonService {
     $process->setTimeout(0);
 
     try {
-      $process->mustRun(); // Executes the process and throws an exception if it fails
+      // $process->mustRun(); // Executes the process and throws an exception if it fails
+      $process->start();
+      $process->wait();
       dd($process->getOutput()); // Outputs the response from the script
     } catch (ProcessFailedException $exception) {
       echo 'Error executing process: ', $exception->getMessage();

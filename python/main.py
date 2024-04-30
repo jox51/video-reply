@@ -36,7 +36,7 @@ newsletter_compiler = agents.newsletter_compiler_agent()
 fetch_news_task = tasks.fetch_news_task(news_fetcher)
 analyze_news_task = tasks.analyze_news_task(news_analyzer, [fetch_news_task])
 compile_newsletter_task = tasks.compile_newsletter_task(
-    newsletter_compiler, [analyze_news_task], save_markdown)
+    newsletter_compiler, [analyze_news_task])
 
 # Form the crew
 crew = Crew(
@@ -54,7 +54,7 @@ results = crew.kickoff()
 print("Crew Work Results:")
 print(results)
 print("Newsletter Task Output")
-print(compile_newsletter_task.output)
+
 
 # # def main():
 # #     # Check the length of command line arguments

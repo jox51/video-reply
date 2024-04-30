@@ -38,7 +38,7 @@ class AINewsLetterTasks():
             """
         )
 
-    def compile_newsletter_task(self, agent, context, callback_function):
+    def compile_newsletter_task(self, agent, context):
         return Task(
             description='Compile the newsletter',
             agent=agent,
@@ -57,6 +57,5 @@ class AINewsLetterTasks():
                 **The Rundown:** OpenAI CEO Sam Altman is reportedly angling to raise TRILLIONS of dollars...\\n\\n'
                 **The details:**...\\n\\n
                 **Why it matters::**...\\n\\n
-            """,
-            callback=callback_function
+            """
         )
