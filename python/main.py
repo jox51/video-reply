@@ -9,8 +9,12 @@ from file_io import save_markdown
 
 api_key = os.environ.get('OPENAI_API_KEY')
 
+from dotenv import load_dotenv
+load_dotenv() 
+
 print("API Key:", os.environ.get('OPENAI_API_KEY', 'Key not found'))
 
+print(os.getenv('OPENAI_API_KEY'))
 
 # # Initialize the agents and tasks
 # agents = AINewsLetterAgents()
