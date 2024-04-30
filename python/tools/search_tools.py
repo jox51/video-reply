@@ -4,6 +4,9 @@ import os
 import requests
 from langchain.tools import tool
 
+from dotenv import load_dotenv
+load_dotenv() 
+
 serper_api_key = os.environ.get('SERPER_API_KEY')
 class SearchTools():
 
