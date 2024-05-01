@@ -1,5 +1,8 @@
 from crewai import Agent
-from tools.search_tools import SearchTools
+ 
+from langchain_community.tools import DuckDuckGoSearchRun
+search_tool = DuckDuckGoSearchRun()
+
 
 
 class AINewsLetterAgents():
@@ -20,7 +23,7 @@ class AINewsLetterAgents():
             goal='Fetch the top AI news stories for the day',
             backstory="""As a digital sleuth, you scour the internet for the latest and most impactful developments
             in the world of AI, ensuring that our readers are always in the know.""",
-            tools=[SearchTools.search_internet],
+            tools=[search_tool],
             verbose=True,
             allow_delegation=True,
         )
@@ -31,7 +34,7 @@ class AINewsLetterAgents():
             goal='Analyze each news story and generate a detailed markdown summary',
             backstory="""With a critical eye and a knack for distilling complex information, you provide insightful
             analyses of AI news stories, making them accessible and engaging for our audience.""",
-            tools=[SearchTools.search_internet],
+            tools=[search_tool],
             verbose=True,
             allow_delegation=True,
         )
