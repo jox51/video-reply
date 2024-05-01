@@ -15,6 +15,9 @@ class PythonService {
     // $scriptPath = base_path('/python/main.py');
     // $pythonPath = env('PYTHON_PATH');
 
+    // set max execution time to 50 minutes
+    set_time_limit(3000);
+
     $command = [
       "/home/forge/.local/pipx/venvs/poetry/bin/poetry",
       "run",
