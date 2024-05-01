@@ -4,32 +4,32 @@ namespace App\Services;
 
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ExecutableFinder;
+
 
 class PythonService {
   public function runPythonScript($arguments = []) {
 
 
 
-    $scriptPath = base_path('/python/main.py');
-    $process = new Process(["python3", $scriptPath]);
-    $process->setWorkingDirectory(base_path());
+    // $scriptPath = base_path('/python/main.py');
+    // $pythonPath = env('PYTHON_PATH');
+
+    $command = [
+      "/home/forge/.local/pipx/venvs/poetry/bin/poetry",
+      "run",
+      "python",
+      "main.py"
+    ];
+
+    $process = new Process($command);
+    $process->setWorkingDirectory(base_path('python'));
     $process->setTimeout(2600);
 
+
     try {
-      $process->start();
+      $process->run();
 
-      // The process is started in the background, wait until it's finished
-      $process->wait(function ($type, $buffer) {
-        if (Process::ERR === $type) {
-          echo "STDERR: " . $buffer;
-        } else {
-          echo "STDOUT: " . $buffer;
-        }
-      });
-
-      if (!$process->isSuccessful()) {
-        throw new ProcessFailedException($process);
-      }
 
       dd('Output: ' . $process->getOutput());
     } catch (ProcessFailedException $exception) {
